@@ -1,0 +1,47 @@
+{
+  "activities": [
+    {
+      "id": "act-acme-1020",
+      "employerId": "acme",
+      "date": "2026-10-20",
+      "type": "Recruiting call",
+      "title": "Spring recruiting plans",
+      "body": "Michael confirmed interest in the spring career fair. Priya will send the participation details.",
+      "loggedBy": "Priya Shah"
+    },
+    {
+      "id": "evt-fall-networking",
+      "employerId": "acme",
+      "date": "2026-10-08",
+      "type": "Employer event",
+      "title": "Fall Employer Networking Session",
+      "body": "Acme Analytics attended.",
+      "event": {
+        "participation": "Attended",
+        "representative": "Michael Harris",
+        "source": "Event platform",
+        "lastImported": "Oct 9, 2026, 9:00 AM"
+      }
+    },
+    {
+      "id": "act-acme-0904",
+      "employerId": "acme",
+      "date": "2026-09-04",
+      "type": "Outreach",
+      "title": "Recruiting relationship established",
+      "body": "Initial conversation with Michael Harris about campus recruiting.",
+      "loggedBy": "Priya Shah"
+    }
+  ],
+  "tasks": [
+    {
+      "id": "task-acme-fair",
+      "employerId": "acme",
+      "title": "Send spring career fair details",
+      "assignedTo": "Priya Shah",
+      "due": "Nov 20, 2026 (sample date)",
+      "reminder": "1 day before due date (sample)",
+      "status": "Open"
+    }
+  ]
+}

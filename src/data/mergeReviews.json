@@ -1,0 +1,28 @@
+[
+  {
+    "id": "MR-0001",
+    "recordA": "Acme Analytics",
+    "recordB": "ACME Analytics Inc.",
+    "flagSource": "System: basic name and contact match (contact Harris)",
+    "flaggedBy": "System (duplicate check at spreadsheet import)",
+    "flaggedAt": "Sprint 1 (sample date)",
+    "routedTo": "Employer Relations Manager",
+    "status": "Approved",
+    "decidedBy": "Priya Shah",
+    "decidedAt": "Sprint 1 (sample date)",
+    "outcome": "Merged into Acme Analytics Inc."
+  },
+  {
+    "id": "MR-0002",
+    "recordA": "Northstar Bank",
+    "recordB": "North Star Bank",
+    "flagSource": "Staff: flagged as a possible duplicate",
+    "flaggedBy": "Employer-relations staff member",
+    "flaggedAt": "Sprint 1 (sample date)",
+    "routedTo": "Employer Relations Manager",
+    "status": "Approved",
+    "decidedBy": "Priya Shah",
+    "decidedAt": "Sprint 1 (sample date)",
+    "outcome": "Merged into Northstar Bank"
+  }
+]

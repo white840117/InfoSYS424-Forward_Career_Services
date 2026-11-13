@@ -1,0 +1,34 @@
+[
+  {
+    "id": "acme",
+    "name": "Acme Analytics Inc.",
+    "aliases": ["Acme Analytics"],
+    "owner": { "name": "Priya Shah", "title": "Relationship manager", "email": "Priya.Shah@edu.example" },
+    "contacts": [
+      { "name": "Michael Harris", "title": "Recruiter · Primary contact", "email": "michael.harris@acme.example" }
+    ],
+    "relationshipStatus": "Active",
+    "recruitingStage": "Recruiting"
+  },
+  {
+    "id": "northstar",
+    "name": "Northstar Bank",
+    "aliases": ["North Star Bank"],
+    "owner": { "name": "Priya Shah", "title": "Relationship manager", "email": "Priya.Shah@edu.example" },
+    "contacts": [
+      { "name": "Lisa Kim", "title": "Primary contact", "email": "" }
+    ],
+    "relationshipStatus": "Active",
+    "recruitingStage": "Event partner"
+  },
+  {
+    "id": "brightpath",
+    "name": "BrightPath",
+    "aliases": [],
+    "owner": { "name": "Thomas Nguyen", "title": "Director", "email": "" },
+    "contacts": [],
+    "contactNote": "Not assigned (data-quality follow-up)",
+    "relationshipStatus": "Dormant",
+    "recruitingStage": "(none)"
+  }
+]

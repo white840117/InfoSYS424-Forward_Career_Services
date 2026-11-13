@@ -1,0 +1,8 @@
+[
+  { "id": "staff", "label": "Employer-Relations Staff", "user": "Employer-relations staff member", "matrixColumn": "staff" },
+  { "id": "manager", "label": "Employer Relations Manager", "user": "Priya Shah", "matrixColumn": "manager" },
+  { "id": "advisorAssigned", "label": "Career Advisor (assigned)", "user": "Amanda Brooks", "matrixColumn": "advisor" },
+  { "id": "advisorBackup", "label": "Career Advisor (backup)", "user": "Backup advisor (sample)", "matrixColumn": "advisor" },
+  { "id": "advisorOther", "label": "Career Advisor (not assigned)", "user": "Other advisor (sample)", "matrixColumn": "advisor" },
+  { "id": "director", "label": "Director", "user": "Thomas Nguyen", "matrixColumn": "director" }
+]

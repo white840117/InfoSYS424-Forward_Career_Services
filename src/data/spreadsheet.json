@@ -1,0 +1,16 @@
+{
+  "columns": ["Organization", "Contact", "Owner", "Last Activity", "Student Notes?", "Status"],
+  "rows": [
+    { "row": 1, "Organization": "Acme Analytics", "Contact": "M. Harris", "Owner": "Priya", "Last Activity": "Sep 4", "Student Notes?": "No", "Status": "Active", "becomes": "acme" },
+    { "row": 2, "Organization": "ACME Analytics Inc.", "Contact": "Mike Harris", "Owner": "Amanda", "Last Activity": "Aug 28", "Student Notes?": "?", "Status": "Recruiting", "becomes": "acme" },
+    { "row": 3, "Organization": "Northstar Bank", "Contact": "L. Kim", "Owner": "Priya", "Last Activity": "Sep 1", "Student Notes?": "No", "Status": "Active", "becomes": "northstar" },
+    { "row": 4, "Organization": "BrightPath", "Contact": "-", "Owner": "Thomas", "Last Activity": "Jul 15", "Student Notes?": "No", "Status": "Dormant", "becomes": "brightpath" },
+    { "row": 5, "Organization": "North Star Bank", "Contact": "Lisa Kim", "Owner": "Amanda", "Last Activity": "Sep 7", "Student Notes?": "Yes?", "Status": "Event", "becomes": "northstar" }
+  ],
+  "statusMapping": [
+    { "from": "Active", "relationshipStatus": "Active", "recruitingStage": "Taken from the matching row" },
+    { "from": "Recruiting", "relationshipStatus": "Active", "recruitingStage": "Recruiting" },
+    { "from": "Event", "relationshipStatus": "Active", "recruitingStage": "Event partner" },
+    { "from": "Dormant", "relationshipStatus": "Dormant", "recruitingStage": "(none)" }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "Active employer rule",
+  "text": "An employer is active if it has at least one recorded engagement activity (recruiting, event, or direct contact) in the last 12 months.",
+  "version": "Version 1 (Sprint 1 proposal)",
+  "status": "Pending Director approval",
+  "approver": "Thomas Nguyen (Director)"
+}

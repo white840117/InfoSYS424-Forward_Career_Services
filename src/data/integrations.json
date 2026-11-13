@@ -1,0 +1,5 @@
+[
+  { "name": "University Login Service", "data": "User identity and role at sign-in", "usedBy": "Every staff user (simulated here by the role switcher)", "question": "Can login roles map directly to CRM roles?", "status": "Not connected" },
+  { "name": "University Student System", "data": "Student reference data for advising cases", "usedBy": "Career Advisors", "question": "Which student fields may the CRM store under FERPA?", "status": "Not connected" },
+  { "name": "Event Platform", "data": "Employer event participation", "usedBy": "Employer-relations staff, Director reports", "question": "Can attendance be imported automatically, and how often?", "status": "Not connected" }
+]

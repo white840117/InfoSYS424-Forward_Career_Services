@@ -1,0 +1,29 @@
+[
+  {
+    "id": "CASE-0002",
+    "student": "Jordan Lee",
+    "assignedAdvisor": "Amanda Brooks",
+    "assignedAdvisorEmail": "Amanda.Brooks@edu.example",
+    "backupAdvisor": "Backup advisor (sample)",
+    "accessRoles": ["advisorAssigned", "advisorBackup"],
+    "notes": [
+      {
+        "date": "2026-10-28",
+        "type": "Career advising",
+        "title": "Interview confidence and preparation",
+        "body": "Jordan shared concerns about answering behavioral interview questions. Practiced a STAR example and agreed to prepare two additional examples before the next meeting.",
+        "author": "Amanda Brooks"
+      }
+    ],
+    "followUps": [
+      {
+        "id": "fu-jordan-star",
+        "title": "Review two STAR examples at the next appointment.",
+        "assignedTo": "Amanda Brooks",
+        "due": "Next appointment (sample date)",
+        "reminder": "1 day before due date (sample)",
+        "status": "Open"
+      }
+    ]
+  }
+]
