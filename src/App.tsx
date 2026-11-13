@@ -6,6 +6,11 @@ import EmployerRecord from './modules/EmployerRecord';
 import { EventRecord, EventsDirectory } from './modules/Events';
 import Overview from './modules/Overview';
 import Workflows from './modules/Workflows';
+import Reports from './modules/Reports';
+import Import from './modules/Import';
+import Rules from './modules/Rules';
+import Access from './modules/Access';
+import Integrations from './modules/Integrations';
 
 function NotFound() {
   return <p>Page not found.</p>;
@@ -23,7 +28,11 @@ export default function App() {
         <Route path="/cases" element={<Cases />} />
         <Route path="/cases/:id" element={<AdvisingCaseView />} />
         <Route path="/workflows" element={<Workflows />} />
-        {/* more modules */}
+        <Route path="/reports" element={<Reports />} />
+        <Route path="/import" element={<Import />} />
+        <Route path="/rules" element={<Rules />} />
+        <Route path="/access" element={<Access />} />
+        <Route path="/integrations" element={<Integrations />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Shell>
