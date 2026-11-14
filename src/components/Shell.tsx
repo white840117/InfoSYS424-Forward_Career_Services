@@ -1,4 +1,4 @@
-import { useEffect, useState, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { landingFor, MODULES, navFor, type ModuleId } from '../access';
 import { ROLES, useStore } from '../store';
@@ -31,8 +31,80 @@ export function RoleSwitcher() {
             <option key={r.id} value={r.id}>{r.label}: {r.user}</option>
           ))}
         </select>
+        <SettingsInfo />
         <CategoryBadge category="Integration" />
       </div>
+    </div>
+  );
+}
+
+/** ⓘ button explaining how to reach Settings. Opens on click or keyboard focus; closes on Esc or outside click. */
+function SettingsInfo() {
+  const { setRole } = useStore();
+  const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
+  const [pos, setPos] = useState({ top: 0, left: 0 });
+  const wrap = useRef<HTMLDivElement>(null);
+  const btn = useRef<HTMLButtonElement>(null);
+
+  const place = () => {
+    const r = btn.current?.getBoundingClientRect();
+    if (!r) return;
+    const width = Math.min(340, window.innerWidth - 32);
+    setPos({ top: r.bottom + 8, left: Math.max(16, Math.min(r.left, window.innerWidth - width - 16)) });
+  };
+  const show = () => { place(); setOpen(true); };
+
+  useEffect(() => {
+    if (!open) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') { setOpen(false); btn.current?.blur(); }
+    };
+    const onDown = (e: PointerEvent) => {
+      if (wrap.current && !wrap.current.contains(e.target as Node)) setOpen(false);
+    };
+    const onScroll = () => place();
+    document.addEventListener('keydown', onKey);
+    document.addEventListener('pointerdown', onDown);
+    window.addEventListener('resize', onScroll);
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('scroll', onScroll);
+      document.removeEventListener('keydown', onKey);
+      document.removeEventListener('pointerdown', onDown);
+    };
+  }, [open]);
+
+  return (
+    <div className="info-wrap" ref={wrap}>
+      <button
+        ref={btn}
+        type="button"
+        className="info-btn"
+        aria-label="How to see Settings"
+        aria-expanded={open}
+        aria-controls="settings-info"
+        onClick={show}
+        onFocus={show}
+      >
+        <span aria-hidden="true">ⓘ</span>
+      </button>
+      {open && (
+        <div id="settings-info" className="info-pop" role="dialog" aria-label="How to see Settings" style={{ top: pos.top, left: pos.left }}>
+          <p>
+            Settings (About this mock-up, Roles and access, Import preview R7, Business rules R10, Integrations R11)
+            is visible to the University IT and Administrator demo roles. Switch to Administrator to see it.
+          </p>
+          <button
+            type="button"
+            className="btn"
+            onClick={() => { setRole('admin'); setOpen(false); navigate('/settings/about'); }}
+          >
+            Switch to Administrator
+          </button>
+        </div>
+      )}
     </div>
   );
 }
