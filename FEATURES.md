@@ -36,3 +36,12 @@ Categories are team assumptions about how each feature would be delivered in the
 - **Merge reviews:** the two Sprint 1 merges (MR-0001 Acme, MR-0002 Northstar) appear in merge history as already approved. Decision dates are not in the sample data and are labeled "sample date". New flags and decisions made during a demo last only for the browser session and do not change the records.
 - **Sample placeholders:** task and follow-up due dates and reminders are labeled "(sample)", as the README asks.
 - Not built (README 5.2 / 5.3): alias search, hiding the Student Notes menu, advisor employer summary, note-open log, fuzzy matching, automatic alias on merge, automatic reassignment to the backup advisor, any backend or real branding.
+
+## Fixes before submission
+
+| Fix | Where |
+|---|---|
+| ⓘ button next to the role switcher explains that Settings is visible to the University IT and Administrator demo roles, with a "Switch to Administrator" button. Opens on click or keyboard focus, closes with Esc or an outside click | Top bar, every page |
+| Repo renamed to `InfoSYS424-Forward_Career_Services`: Vite `base`, README and git remote updated. Live site: https://white840117.github.io/InfoSYS424-Forward_Career_Services/ (the old "Foward" URL no longer works) | vite.config.ts; README.md |
+| Access matrix gains a "Spreadsheet import (R7)" row: University IT and Administrator run the import, the Employer Relations Manager reviews the result, all other roles have none. The manager can open Settings → Import preview from Duplicate review without other Settings access; other roles see a locked placeholder. Import roles are a team assumption | Settings → Roles and access; Settings → Import preview; Duplicate review |
+| Employers without timeline activity show their latest "Last Activity" from the case packet spreadsheet (Northstar Bank Sep 7, BrightPath Jul 15), labeled "From spreadsheet import". No year, activity type or timeline entry is added. Import preview section 3 shows the same values (Acme Sep 4) | Employers; Settings → Import preview |
