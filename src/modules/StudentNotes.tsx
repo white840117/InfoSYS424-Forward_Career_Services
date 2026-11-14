@@ -50,7 +50,8 @@ function AddNoteForm({ c, onDone }: { c: AdvisingCase; onDone: () => void }) {
   const [body, setBody] = useState('');
   const [followUp, setFollowUp] = useState('');
   const [due, setDue] = useState('');
-  const ok = title.trim() && body.trim();
+  const needsText = !!due && !followUp.trim();
+  const ok = title.trim() && body.trim() && !needsText;
   return (
     <form className="private-note" aria-label="Add note"
       onSubmit={(e) => {
@@ -70,8 +71,9 @@ function AddNoteForm({ c, onDone }: { c: AdvisingCase; onDone: () => void }) {
       </div>
       <div className="form" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))' }}>
         <label>Follow-up (optional)<input value={followUp} onChange={(e) => setFollowUp(e.target.value)} /></label>
-        <label>Follow-up due date<input type="date" value={due} onChange={(e) => setDue(e.target.value)} disabled={!followUp.trim()} /></label>
+        <label>Follow-up due date<input type="date" value={due} onChange={(e) => setDue(e.target.value)} /></label>
       </div>
+      {needsText && <span className="muted small" role="status">Add the follow-up text to go with this due date.</span>}
       <div className="btn-row">
         <button className="btn" type="submit" disabled={!ok}>Save note</button>
         <button className="btn secondary" type="button" onClick={onDone}>Cancel</button>
