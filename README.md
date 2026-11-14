@@ -142,7 +142,7 @@ In the import preview, show that the "Student Notes?" column is **not** carried 
 - `react-router-dom` with **HashRouter** (GitHub Pages has no server-side routing).
 - Data in `src/data/*.json`. No `localStorage` needed. If used for remembering the selected role, wrap it in try/catch.
 - Responsive down to phone width; buttons at least 44px high; keyboard focus visible.
-- Public GitHub repo **`InfoSYS424-Foward_Career_Services`**. Deploy to **GitHub Pages** with a GitHub Actions workflow; set Vite `base` to `/InfoSYS424-Foward_Career_Services/`.
+- Public GitHub repo **`InfoSYS424-Forward_Career_Services`**. Deploy to **GitHub Pages** with a GitHub Actions workflow; set Vite `base` to `/InfoSYS424-Forward_Career_Services/`.
 
 Suggested structure:
 
