@@ -62,7 +62,7 @@ export function EventRecord() {
         <div className="source-box">
           <strong>Source: {d.source}</strong>
           <span className="muted small">Last imported: {d.lastImported} (sample)</span>
-          <span>Imported source record. Maintain participation in the event platform. The connection is not built yet; see <Link to="/integrations">Integrations</Link>.</span>
+          <span>Imported source record. Maintain participation in the event platform. The connection is not built yet; see Settings → Integrations.</span>
         </div>
       </Feature>
     </>

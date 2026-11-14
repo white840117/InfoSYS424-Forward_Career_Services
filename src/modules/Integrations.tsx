@@ -4,7 +4,7 @@ import integrations from '../data/integrations.json';
 export default function Integrations() {
   return (
     <>
-      <PageHead eyebrow="Integrations" title="University system connections"
+      <PageHead eyebrow="Settings" title="Integrations"
         sub="Client Update 2 says the CRM needs integration with university systems. None of these connections exists yet." />
       <Feature id="R11" title="Integrations panel" category="Integration"
         description="Each connection is shown with what it would send to the CRM and the question still open.">

@@ -4,7 +4,7 @@ import rule from '../data/rules.json';
 export default function Rules() {
   return (
     <>
-      <PageHead eyebrow="Business rules" title="Business rules" sub="Rules that decide how records are classified." />
+      <PageHead eyebrow="Settings" title="Business rules" sub="Rules that decide how records are classified." />
       <Feature id="R10" title={`"${rule.name}"`} category="Customization"
         description="Needs custom work inside the CRM to evaluate automatically, or a governance process outside the CRM.">
         <blockquote className="card" style={{ margin: 0, background: '#F5F8F7', border: 0, fontSize: 16, color: 'var(--heading)' }}>

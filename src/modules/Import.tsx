@@ -85,7 +85,7 @@ export default function Import() {
             </tbody>
           </table>
         </div>
-        <p className="muted small">Merge decisions for rows 1+2 and 3+5 are in <Link to="/cases">Cases → Merge history</Link>.</p>
+        <p className="muted small">Merge decisions for rows 1+2 and 3+5 are in <Link to="/duplicates">Duplicate review → Merge history</Link>.</p>
       </Feature>
     </>
   );

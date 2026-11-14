@@ -66,7 +66,7 @@ export default function Workflows() {
         {advisingCases.map((c) =>
           canOpenAdvisingCase(role.id, c) ? (
             <div key={c.id} className="stack" style={{ gap: 6 }}>
-              <span className="muted small">Advising case: <Link to={`/cases/${c.id}`}>{c.id} · {c.student}</Link></span>
+              <span className="muted small">Advising case: <Link to={`/notes/${c.id}`}>{c.id} · {c.student}</Link></span>
               {c.followUps.map((f) => (
                 <TaskView key={f.id} task={f} onToggle={() => toggleFollowUp(c.id, f.id)} />
               ))}

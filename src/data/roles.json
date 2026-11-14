@@ -4,5 +4,7 @@
   { "id": "advisorAssigned", "label": "Career Advisor (assigned)", "user": "Amanda Brooks", "matrixColumn": "advisor" },
   { "id": "advisorBackup", "label": "Career Advisor (backup)", "user": "Backup advisor (sample)", "matrixColumn": "advisor" },
   { "id": "advisorOther", "label": "Career Advisor (not assigned)", "user": "Other advisor (sample)", "matrixColumn": "advisor" },
-  { "id": "director", "label": "Director", "user": "Thomas Nguyen", "matrixColumn": "director" }
+  { "id": "director", "label": "Director", "user": "Thomas Nguyen", "matrixColumn": "director" },
+  { "id": "it", "label": "University IT (demo role)", "user": "IT administrator (sample)", "matrixColumn": "it" },
+  { "id": "admin", "label": "Administrator (demo role)", "user": "Demo administrator (sample)", "matrixColumn": "admin" }
 ]

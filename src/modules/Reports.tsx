@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { reportAccess } from '../access';
 import { Feature, PageHead, Pill } from '../components/ui';
 import { useStore } from '../store';
@@ -37,7 +36,7 @@ export default function Reports() {
             </tbody>
           </table>
         </div>
-        <p className="muted small">See <Link to="/integrations">Integrations</Link> for the open questions on each connection.</p>
+        <p className="muted small">Open questions on each connection are listed in Settings → Integrations.</p>
       </Feature>
     </>
   );

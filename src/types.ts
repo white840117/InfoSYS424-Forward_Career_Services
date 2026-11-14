@@ -4,9 +4,11 @@ export type RoleId =
   | 'advisorAssigned'
   | 'advisorBackup'
   | 'advisorOther'
-  | 'director';
+  | 'director'
+  | 'it'
+  | 'admin';
 
-export type MatrixColumn = 'staff' | 'manager' | 'advisor' | 'director';
+export type MatrixColumn = 'staff' | 'manager' | 'advisor' | 'director' | 'it' | 'admin';
 
 export interface Role {
   id: RoleId;
@@ -68,6 +70,7 @@ export interface AdvisingNote {
   title: string;
   body: string;
   author: string;
+  followUp?: string;
 }
 
 export interface AdvisingCase {

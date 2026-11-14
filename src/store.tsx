@@ -6,6 +6,7 @@ import employersData from './data/employers.json';
 import activitiesData from './data/activities.json';
 import advisingData from './data/advising.json';
 import mergeData from './data/mergeReviews.json';
+import { SETTINGS_FIXED } from './access';
 import type { AdvisingCase, Activity, Employer, MergeReview, Role, RoleId, Task } from './types';
 
 export const ROLES = rolesData as Role[];
@@ -49,6 +50,18 @@ interface Store {
   mergeReviews: MergeReview[];
   flagDuplicate: (a: string, b: string, note: string) => void;
   decideMerge: (id: string, approve: boolean) => void;
+  addNote: (caseId: string, note: NewNote) => void;
+  settingsRoles: RoleId[];
+  setSettingsAccess: (id: RoleId, on: boolean) => void;
+}
+
+export interface NewNote {
+  date: string;
+  type: string;
+  title: string;
+  body: string;
+  followUp: string;
+  followUpDue: string;
 }
 
 const Ctx = createContext<Store | null>(null);
@@ -59,6 +72,7 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [tasks, setTasks] = useState<Task[]>(activitiesData.tasks as Task[]);
   const [advisingCases, setAdvising] = useState<AdvisingCase[]>(advisingData as AdvisingCase[]);
   const [mergeReviews, setMerge] = useState<MergeReview[]>(mergeData as MergeReview[]);
+  const [settingsRoles, setSettingsRoles] = useState<RoleId[]>(SETTINGS_FIXED);
 
   const value = useMemo<Store>(() => {
     const role = ROLES.find((r) => r.id === roleId) ?? ROLES[0];
@@ -102,8 +116,31 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             ? `Approved for merge (simulated: records are not changed in this mock-up)`
             : 'Rejected: records stay separate',
         })),
+      addNote: (caseId, n) =>
+        setAdvising((list) => list.map((c) => {
+          if (c.id !== caseId) return c;
+          const fu = n.followUp.trim();
+          return {
+            ...c,
+            notes: [{ date: n.date, type: n.type, title: n.title.trim(), body: n.body.trim(), author: role.user, followUp: fu || undefined }, ...c.notes],
+            followUps: fu
+              ? [...c.followUps, {
+                id: `fu-${Date.now()}`,
+                title: fu,
+                assignedTo: role.user,
+                due: n.followUpDue ? formatDate(n.followUpDue) : 'No due date set',
+                reminder: n.followUpDue ? '1 day before due date (sample)' : 'None',
+                status: 'Open',
+              }]
+              : c.followUps,
+          };
+        })),
+      settingsRoles,
+      setSettingsAccess: (id, on) =>
+        setSettingsRoles((list) => SETTINGS_FIXED.includes(id) ? list
+          : on ? [...new Set([...list, id])] : list.filter((x) => x !== id)),
     };
-  }, [roleId, employers, tasks, advisingCases, mergeReviews]);
+  }, [roleId, employers, tasks, advisingCases, mergeReviews, settingsRoles]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

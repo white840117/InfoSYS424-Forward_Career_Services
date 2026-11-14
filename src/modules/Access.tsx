@@ -7,7 +7,7 @@ export default function Access() {
   const col = role.matrixColumn;
   return (
     <>
-      <PageHead eyebrow="Roles and access" title="Roles and access"
+      <PageHead eyebrow="Settings" title="Roles and access"
         sub="Role-based access is confirmed by Client Update 2. The highlighted column is the role you are viewing as." />
       <Feature id="R3" title="Access matrix" category="Configuration"
         description="Security roles plus record-level access on advising cases. Every screen in this mock-up follows this table.">

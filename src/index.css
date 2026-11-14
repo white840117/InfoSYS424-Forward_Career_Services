@@ -87,6 +87,7 @@ a { color: var(--nav-active-text); }
   display: flex; align-items: center; min-height: 44px; padding: 0 12px; border-radius: 4px;
   color: var(--text); text-decoration: none; font-weight: 500;
 }
+.sidebar .nav-bottom { margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); }
 .sidebar a:hover { background: #F4F7FB; }
 .sidebar a.active { background: var(--nav-active-bg); color: var(--nav-active-text); font-weight: 600; }
 main { flex: 1; min-width: 0; padding: 32px 40px 64px; display: flex; flex-direction: column; gap: 20px; }
@@ -151,9 +152,11 @@ td.struck { color: #8A3B12; text-decoration: line-through; }
 .t-title { font-size: 17px; font-weight: 600; color: var(--heading); }
 
 /* ---------- Fields ---------- */
-.fields { display: grid; grid-template-columns: minmax(140px, 200px) 1fr; gap: 10px 16px; margin: 0; }
+.fields { display: grid; grid-template-columns: minmax(110px, max-content) minmax(0, 1fr); gap: 10px 16px; margin: 0; }
 .fields dt { color: var(--muted); font-size: 13px; }
-.fields dd { margin: 0; color: var(--heading); font-weight: 500; }
+.fields dd { margin: 0; color: var(--heading); font-weight: 500; min-width: 0; overflow-wrap: anywhere; }
+.fields.stacked { grid-template-columns: 1fr; gap: 2px 0; }
+.fields.stacked dd { margin-bottom: 10px; }
 .side-label { font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: .03em; text-transform: uppercase; }
 select.picklist, .form select, .form input, .form textarea {
   min-height: 44px; padding: 0 10px; border: 1px solid #C2C9D1; border-radius: var(--radius);
@@ -229,3 +232,13 @@ select.picklist, .form select, .form input, .form textarea {
   .fields { grid-template-columns: 1fr; gap: 2px 0; }
   .fields dd { margin-bottom: 10px; }
 }
+
+/* ---------- Sub-tabs (Settings) ---------- */
+.subtabs { display: flex; flex-wrap: wrap; gap: 4px; border-bottom: 1px solid var(--border); }
+.subtabs a {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 14px; text-decoration: none;
+  color: var(--text); font-weight: 500; border-bottom: 3px solid transparent; margin-bottom: -1px;
+}
+.subtabs a.active { color: var(--nav-active-text); border-bottom-color: var(--nav-active-text); font-weight: 600; }
+.toggle-row { display: flex; align-items: center; gap: 12px; min-height: 44px; }
+.toggle-row input { width: 20px; height: 20px; }
