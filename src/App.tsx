@@ -1,7 +1,8 @@
 import type { ReactNode } from 'react';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Link, Navigate, Route, Routes } from 'react-router-dom';
 import type { ModuleId } from './access';
-import { HomeRedirect, ModuleGate, Shell } from './components/Shell';
+import { HomeRedirect, ModuleGate, SettingsGate, Shell } from './components/Shell';
+import Import from './modules/Import';
 import Contacts from './modules/Contacts';
 import Duplicates from './modules/Duplicates';
 import EmployerRecord from './modules/EmployerRecord';
@@ -13,6 +14,16 @@ import Workflows from './modules/Workflows';
 
 function NotFound() {
   return <p>Page not found.</p>;
+}
+
+/** Import preview opened outside Settings by the ER Manager. */
+function ManagerImport() {
+  return (
+    <>
+      <Link className="back" to="/duplicates">← Duplicate review</Link>
+      <Import />
+    </>
+  );
 }
 
 const gate = (m: ModuleId, el: ReactNode) => <ModuleGate module={m}>{el}</ModuleGate>;
@@ -32,7 +43,10 @@ export default function App() {
         <Route path="/workflows" element={gate('workflows', <Workflows />)} />
         <Route path="/reports" element={gate('reports', <Reports />)} />
         <Route path="/import" element={<Navigate to="/settings/import" replace />} />
-        <Route path="/settings/*" element={gate('settings', <Settings />)} />
+        <Route
+          path="/settings/*"
+          element={<SettingsGate settings={<Settings />} importOnly={<ManagerImport />} />}
+        />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </Shell>

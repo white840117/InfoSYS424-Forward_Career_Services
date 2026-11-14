@@ -13,6 +13,7 @@
     { "record": "Merge review cases", "cells": { "staff": "Create", "manager": "Approve or reject", "advisor": "None", "director": "View", "it": "None", "admin": "View" } },
     { "record": "Advising cases and notes", "cells": { "staff": "None", "manager": "None", "advisor": "Assigned or backup advisor only", "director": "None", "it": "None", "admin": "None" } },
     { "record": "Engagement reports", "cells": { "staff": "Aggregate", "manager": "Aggregate", "advisor": "Aggregate", "director": "Aggregate, de-identified", "it": "None", "admin": "Aggregate, de-identified" } },
+    { "record": "Spreadsheet import (R7)", "cells": { "staff": "None", "manager": "Review results", "advisor": "None", "director": "None", "it": "Run import", "admin": "Run import" } },
     { "record": "Settings (mock-up info, access, rules, integrations)", "cells": { "staff": "None by default", "manager": "None by default", "advisor": "None by default", "director": "None by default", "it": "Manage", "admin": "Manage" } }
   ]
 }

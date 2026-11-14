@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { landingFor, MODULES, navFor, type ModuleId } from '../access';
+import { importAccess, landingFor, MODULES, navFor, type ModuleId } from '../access';
 import { ROLES, useStore } from '../store';
 import type { RoleId } from '../types';
 import { CategoryBadge } from './ui';
@@ -177,4 +177,16 @@ export function ModuleGate({ module, children }: { module: ModuleId; children: R
       </div>
     </div>
   );
+}
+
+/**
+ * Settings route. Roles with Settings access get the full area. The ER Manager has no Settings
+ * access but may open Settings → Import preview (R7) directly, e.g. from Duplicate review.
+ */
+export function SettingsGate({ settings, importOnly }: { settings: ReactNode; importOnly: ReactNode }) {
+  const { role, settingsRoles } = useStore();
+  const loc = useLocation();
+  if (navFor(role.id, settingsRoles).includes('settings')) return <>{settings}</>;
+  if (loc.pathname.replace(/\/$/, '') === '/settings/import' && importAccess(role.id) !== 'none') return <>{importOnly}</>;
+  return <ModuleGate module="settings">{settings}</ModuleGate>;
 }

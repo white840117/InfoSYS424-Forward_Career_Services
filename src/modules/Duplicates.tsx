@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { mergeAccess } from '../access';
+import { Link } from 'react-router-dom';
+import { importAccess, mergeAccess } from '../access';
 import { Feature, LockedPlaceholder, PageHead, Pill, ReadOnlyNote } from '../components/ui';
 import { useStore } from '../store';
 import type { MergeReview } from '../types';
@@ -85,7 +86,10 @@ export default function Duplicates() {
       </Feature>
 
       <Feature id="R5" title="Merge history" category="Configuration"
-        description="Change history for merge reviews: who flagged, who decided, when, and the outcome.">
+        description="Change history for merge reviews: who flagged, who decided, when, and the outcome."
+        actions={importAccess(role.id) !== 'none'
+          ? <Link className="btn secondary" to="/settings/import">Review the spreadsheet import</Link>
+          : undefined}>
         <div className="table-wrap">
           <table>
             <thead>

@@ -1,4 +1,6 @@
-import { Feature, PageHead, Pill } from '../components/ui';
+import { importAccess } from '../access';
+import { Feature, LockedPlaceholder, PageHead, Pill, ReadOnlyNote } from '../components/ui';
+import { useStore } from '../store';
 import employersData from '../data/employers.json';
 import mergeData from '../data/mergeReviews.json';
 import sheet from '../data/spreadsheet.json';
@@ -10,13 +12,32 @@ type Row = (typeof sheet.rows)[number];
 const cell = (r: Row, c: string) => (r as unknown as Record<string, string>)[c];
 
 export default function Import() {
+  const { role } = useStore();
+  const access = importAccess(role.id);
+  const head = (
+    <PageHead eyebrow="Settings" title="Import preview"
+      sub="One-time import of the case packet spreadsheet into the University CRM." />
+  );
+  if (access === 'none') {
+    return (
+      <>
+        {head}
+        <LockedPlaceholder what="the spreadsheet import"
+          why="Only University IT, the Administrator and the Employer Relations Manager work with the import." />
+      </>
+    );
+  }
   return (
     <>
-      <PageHead eyebrow="Settings" title="Import preview"
-        sub="One-time import of the case packet spreadsheet into the University CRM." />
+      {head}
 
       <Feature id="R7" title="Spreadsheet import preview" category="Configuration"
         description="Original rows on the left of the process, canonical employer records on the right. Duplicate rows are grouped and sent to merge review.">
+        <ReadOnlyNote>
+          {access === 'run'
+            ? `Your role: Run import. ${role.label} runs the one-time import (simulated: no import action in this mock-up).`
+            : `Your role: Review results. ${role.label}, as owner of employer data, reviews the imported records.`}
+        </ReadOnlyNote>
         <h3>1. Original spreadsheet rows (case packet)</h3>
         <div className="table-wrap">
           <table>

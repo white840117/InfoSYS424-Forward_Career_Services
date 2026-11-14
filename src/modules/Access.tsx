@@ -37,6 +37,10 @@ export default function Access() {
           Assumed, to confirm with university IT: the CRM can limit an advising case to the student's assigned or backup
           advisor (record-level access). Role-level access alone would let every advisor see every note.
         </div>
+        <div className="note-assume">
+          Import roles are a team assumption: IT runs the one-time import and the Employer Relations Manager, as owner
+          of employer data, reviews the result.
+        </div>
       </Feature>
     </>
   );

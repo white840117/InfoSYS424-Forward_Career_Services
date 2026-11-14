@@ -35,6 +35,13 @@ export function reportAccess(r: RoleId): 'aggregate' | 'deidentified' {
   return r === 'director' || r === 'admin' ? 'deidentified' : 'aggregate';
 }
 
+/** Spreadsheet import (R7): IT and the Administrator run it; the ER Manager, as owner of employer data, reviews the result. */
+export function importAccess(r: RoleId): 'run' | 'review' | 'none' {
+  if (r === 'it' || r === 'admin') return 'run';
+  if (r === 'manager') return 'review';
+  return 'none';
+}
+
 // ---------- Navigation by role ----------
 
 export type ModuleId =
