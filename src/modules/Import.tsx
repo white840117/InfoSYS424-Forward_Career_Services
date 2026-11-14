@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom';
 import { Feature, PageHead, Pill } from '../components/ui';
 import employersData from '../data/employers.json';
 import mergeData from '../data/mergeReviews.json';
@@ -13,7 +12,7 @@ const cell = (r: Row, c: string) => (r as unknown as Record<string, string>)[c];
 export default function Import() {
   return (
     <>
-      <PageHead eyebrow="Data import" title="Spreadsheet import preview"
+      <PageHead eyebrow="Settings" title="Import preview"
         sub="One-time import of the case packet spreadsheet into the University CRM." />
 
       <Feature id="R7" title="Spreadsheet import preview" category="Configuration"
@@ -73,7 +72,7 @@ export default function Import() {
             <tbody>
               {CANON.map((e) => (
                 <tr key={e.id}>
-                  <td><Link className="row-link" to={`/employers/${e.id}`}>{e.name}</Link></td>
+                  <td><strong>{e.name}</strong></td>
                   <td>{e.aliases.join(', ') || <span className="muted">(none)</span>}</td>
                   <td>{e.contacts[0]?.name ?? <span className="muted">{e.contactNote}</span>}</td>
                   <td>{e.owner.name}</td>
@@ -85,7 +84,7 @@ export default function Import() {
             </tbody>
           </table>
         </div>
-        <p className="muted small">Merge decisions for rows 1+2 and 3+5 are in <Link to="/duplicates">Duplicate review → Merge history</Link>.</p>
+        <p className="muted small">Merge decisions for rows 1+2 and 3+5 are in Duplicate review → Merge history.</p>
       </Feature>
     </>
   );

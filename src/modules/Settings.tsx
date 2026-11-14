@@ -3,6 +3,7 @@ import { SETTINGS_FIXED } from '../access';
 import { Feature, PageHead, ReadOnlyNote } from '../components/ui';
 import { ROLES, useStore } from '../store';
 import Access from './Access';
+import Import from './Import';
 import Integrations from './Integrations';
 import Overview from './Overview';
 import Rules from './Rules';
@@ -11,6 +12,7 @@ const TABS = [
   { to: 'about', label: 'About this mock-up' },
   { to: 'access', label: 'Roles and access' },
   { to: 'visibility', label: 'Settings access' },
+  { to: 'import', label: 'Import preview' },
   { to: 'rules', label: 'Business rules' },
   { to: 'integrations', label: 'Integrations' },
 ];
@@ -53,6 +55,7 @@ export default function Settings() {
         <Route path="about" element={<Overview />} />
         <Route path="access" element={<Access />} />
         <Route path="visibility" element={<SettingsAccess />} />
+        <Route path="import" element={<Import />} />
         <Route path="rules" element={<Rules />} />
         <Route path="integrations" element={<Integrations />} />
       </Routes>

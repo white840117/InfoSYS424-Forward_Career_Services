@@ -1,12 +1,11 @@
 import type { ReactNode } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Navigate, Route, Routes } from 'react-router-dom';
 import type { ModuleId } from './access';
 import { HomeRedirect, ModuleGate, Shell } from './components/Shell';
 import Contacts from './modules/Contacts';
 import Duplicates from './modules/Duplicates';
 import EmployerRecord from './modules/EmployerRecord';
 import { EventRecord, EventsDirectory } from './modules/Events';
-import Import from './modules/Import';
 import Reports from './modules/Reports';
 import Settings from './modules/Settings';
 import StudentNotes, { AdvisingCaseView } from './modules/StudentNotes';
@@ -32,7 +31,7 @@ export default function App() {
         <Route path="/duplicates" element={gate('duplicates', <Duplicates />)} />
         <Route path="/workflows" element={gate('workflows', <Workflows />)} />
         <Route path="/reports" element={gate('reports', <Reports />)} />
-        <Route path="/import" element={gate('import', <Import />)} />
+        <Route path="/import" element={<Navigate to="/settings/import" replace />} />
         <Route path="/settings/*" element={gate('settings', <Settings />)} />
         <Route path="*" element={<NotFound />} />
       </Routes>

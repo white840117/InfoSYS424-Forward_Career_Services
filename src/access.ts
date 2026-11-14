@@ -38,7 +38,7 @@ export function reportAccess(r: RoleId): 'aggregate' | 'deidentified' {
 // ---------- Navigation by role ----------
 
 export type ModuleId =
-  | 'employers' | 'events' | 'notes' | 'duplicates' | 'workflows' | 'reports' | 'import' | 'settings';
+  | 'employers' | 'events' | 'notes' | 'duplicates' | 'workflows' | 'reports' | 'settings';
 
 export const MODULES: Record<ModuleId, { to: string; label: string }> = {
   employers: { to: '/employers', label: 'Employers' },
@@ -47,17 +47,16 @@ export const MODULES: Record<ModuleId, { to: string; label: string }> = {
   duplicates: { to: '/duplicates', label: 'Duplicate review' },
   workflows: { to: '/workflows', label: 'Tasks and follow-ups' },
   reports: { to: '/reports', label: 'Engagement report' },
-  import: { to: '/import', label: 'Import preview' },
   settings: { to: '/settings', label: 'Settings' },
 };
 
 /** One fixed sidebar order for every role. Each role only hides what it cannot open. */
-const NAV_ORDER: ModuleId[] = ['employers', 'events', 'notes', 'duplicates', 'workflows', 'reports', 'import'];
+const NAV_ORDER: ModuleId[] = ['employers', 'events', 'notes', 'duplicates', 'workflows', 'reports'];
 
 const ADVISOR_NAV: ModuleId[] = ['notes', 'workflows', 'employers', 'events', 'reports'];
 const ALLOWED: Record<RoleId, ModuleId[]> = {
-  staff: ['employers', 'events', 'workflows', 'duplicates', 'import', 'reports'],
-  manager: ['employers', 'events', 'duplicates', 'workflows', 'import', 'reports'],
+  staff: ['employers', 'events', 'workflows', 'duplicates', 'reports'],
+  manager: ['employers', 'events', 'duplicates', 'workflows', 'reports'],
   advisorAssigned: ADVISOR_NAV,
   advisorBackup: ADVISOR_NAV,
   advisorOther: ADVISOR_NAV,
