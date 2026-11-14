@@ -51,9 +51,11 @@ export const MODULES: Record<ModuleId, { to: string; label: string }> = {
   settings: { to: '/settings', label: 'Settings' },
 };
 
-/** Sidebar order per role; the first item is the role's landing page. Settings is added separately. */
+/** One fixed sidebar order for every role. Each role only hides what it cannot open. */
+const NAV_ORDER: ModuleId[] = ['employers', 'events', 'notes', 'duplicates', 'workflows', 'reports', 'import'];
+
 const ADVISOR_NAV: ModuleId[] = ['notes', 'workflows', 'employers', 'events', 'reports'];
-export const NAV_BY_ROLE: Record<RoleId, ModuleId[]> = {
+const ALLOWED: Record<RoleId, ModuleId[]> = {
   staff: ['employers', 'events', 'workflows', 'duplicates', 'import', 'reports'],
   manager: ['employers', 'events', 'duplicates', 'workflows', 'import', 'reports'],
   advisorAssigned: ADVISOR_NAV,
@@ -61,14 +63,30 @@ export const NAV_BY_ROLE: Record<RoleId, ModuleId[]> = {
   advisorOther: ADVISOR_NAV,
   director: ['reports', 'employers', 'events', 'duplicates', 'workflows'],
   it: [],
-  admin: ['employers', 'events', 'notes', 'duplicates', 'workflows', 'reports', 'import'],
+  admin: NAV_ORDER,
+};
+
+/** Landing page after sign-in: each role's main module. */
+const LANDING: Record<RoleId, ModuleId> = {
+  staff: 'employers',
+  manager: 'employers',
+  advisorAssigned: 'notes',
+  advisorBackup: 'notes',
+  advisorOther: 'notes',
+  director: 'reports',
+  it: 'settings',
+  admin: 'employers',
 };
 
 /** Roles that always see Settings; others are granted by the Settings access panel. */
 export const SETTINGS_FIXED: RoleId[] = ['it', 'admin'];
 
 export function navFor(r: RoleId, settingsRoles: RoleId[]): ModuleId[] {
-  const list = [...NAV_BY_ROLE[r]];
+  const list = NAV_ORDER.filter((m) => ALLOWED[r].includes(m));
   if (settingsRoles.includes(r)) list.push('settings');
   return list;
+}
+
+export function landingFor(r: RoleId): ModuleId {
+  return LANDING[r];
 }

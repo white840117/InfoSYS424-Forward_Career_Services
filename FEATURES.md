@@ -21,7 +21,7 @@ Categories are team assumptions about how each feature would be delivered in the
 
 | Change | Category | Where |
 |---|---|---|
-| Sidebar now depends on the signed-in role, and each role lands on its main module: staff and manager → Employers, advisors → Student Notes, Director → Engagement report, University IT → Settings | Configuration (role-based access) | Every page |
+| Sidebar shows only the modules the signed-in role can open, always in one fixed order (Employers, Events, Student Notes, Duplicate review, Tasks and follow-ups, Engagement report, Import preview, Settings). Each role lands on its main module: staff and manager → Employers, advisors → Student Notes, Director → Engagement report, University IT → Settings | Configuration (role-based access) | Every page |
 | Removed the duplicate "Workspace / Career Services" heading from the sidebar | (layout only) | Sidebar |
 | "Cases" split into **Student Notes** (R3, advising cases only) and **Duplicate review** (R4 merge review cases + R5 merge history) | (reorganization of R3, R4, R5) | Student Notes; Duplicate review |
 | **Add note** on an advising case: the assigned or backup advisor can add a session note with an optional follow-up and due date. Saved for the browser session only | Configuration (part of R3; follow-up feeds R9) | Student Notes → Jordan Lee |

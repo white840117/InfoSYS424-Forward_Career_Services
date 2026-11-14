@@ -1,6 +1,6 @@
 import { useEffect, useState, type ReactNode } from 'react';
 import { Navigate, NavLink, useLocation, useNavigate } from 'react-router-dom';
-import { MODULES, navFor, type ModuleId } from '../access';
+import { landingFor, MODULES, navFor, type ModuleId } from '../access';
 import { ROLES, useStore } from '../store';
 import type { RoleId } from '../types';
 import { CategoryBadge } from './ui';
@@ -89,9 +89,8 @@ export function Shell({ children }: { children: ReactNode }) {
 
 /** Sends "/" to the signed-in role's first module. */
 export function HomeRedirect() {
-  const { role, settingsRoles } = useStore();
-  const first = navFor(role.id, settingsRoles)[0] ?? 'settings';
-  return <Navigate to={MODULES[first].to} replace />;
+  const { role } = useStore();
+  return <Navigate to={MODULES[landingFor(role.id)].to} replace />;
 }
 
 /** Blocks a module that is not in the role's sidebar (e.g. opened by URL). */
