@@ -34,6 +34,8 @@ export interface Employer {
   contactNote?: string;
   relationshipStatus: string;
   recruitingStage: string;
+  /** Latest "Last Activity" from the case packet spreadsheet (no year or type given). */
+  importedLastActivity?: string;
 }
 
 export interface EventDetails {

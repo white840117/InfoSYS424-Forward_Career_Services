@@ -54,7 +54,8 @@ export default function Contacts() {
                     <td>{e.recruitingStage === '(none)' ? <span className="muted">(none)</span> : <Pill value={e.recruitingStage} />}</td>
                     <td>
                       {last ? (<>{formatDate(last.date)}<span className="sub">{last.type}</span></>)
-                        : <span className="muted">No activity in sample data</span>}
+                        : e.importedLastActivity ? (<>{e.importedLastActivity}<span className="sub">From spreadsheet import</span></>)
+                          : <span className="muted">No activity in sample data</span>}
                     </td>
                   </tr>
                 );

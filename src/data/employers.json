@@ -8,7 +8,8 @@
       { "name": "Michael Harris", "title": "Recruiter · Primary contact", "email": "michael.harris@acme.example" }
     ],
     "relationshipStatus": "Active",
-    "recruitingStage": "Recruiting"
+    "recruitingStage": "Recruiting",
+    "importedLastActivity": "Sep 4"
   },
   {
     "id": "northstar",
@@ -19,7 +20,8 @@
       { "name": "Lisa Kim", "title": "Primary contact", "email": "" }
     ],
     "relationshipStatus": "Active",
-    "recruitingStage": "Event partner"
+    "recruitingStage": "Event partner",
+    "importedLastActivity": "Sep 7"
   },
   {
     "id": "brightpath",
@@ -29,6 +31,7 @@
     "contacts": [],
     "contactNote": "Not assigned (data-quality follow-up)",
     "relationshipStatus": "Dormant",
-    "recruitingStage": "(none)"
+    "recruitingStage": "(none)",
+    "importedLastActivity": "Jul 15"
   }
 ]

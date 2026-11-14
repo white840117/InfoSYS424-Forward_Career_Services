@@ -88,7 +88,7 @@ export default function Import() {
         <div className="table-wrap">
           <table>
             <thead>
-              <tr><th>Employer</th><th>Alias</th><th>Contact</th><th>Owner</th><th>Relationship status</th><th>Recruiting stage</th><th>From rows</th></tr>
+              <tr><th>Employer</th><th>Alias</th><th>Contact</th><th>Owner</th><th>Relationship status</th><th>Recruiting stage</th><th>Last activity</th><th>From rows</th></tr>
             </thead>
             <tbody>
               {CANON.map((e) => (
@@ -99,6 +99,7 @@ export default function Import() {
                   <td>{e.owner.name}</td>
                   <td><Pill value={e.relationshipStatus} /></td>
                   <td>{e.recruitingStage}</td>
+                  <td>{e.importedLastActivity ?? <span className="muted">(none)</span>}</td>
                   <td>{sheet.rows.filter((r) => r.becomes === e.id).map((r) => r.row).join(', ')}</td>
                 </tr>
               ))}
