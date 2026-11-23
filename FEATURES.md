@@ -45,3 +45,33 @@ Categories are team assumptions about how each feature would be delivered in the
 | Repo renamed to `InfoSYS424-Forward_Career_Services`: Vite `base`, README and git remote updated. Live site: https://white840117.github.io/InfoSYS424-Forward_Career_Services/ (the old "Foward" URL no longer works) | vite.config.ts; README.md |
 | Access matrix gains a "Spreadsheet import (R7)" row: University IT and Administrator run the import, the Employer Relations Manager reviews the result, all other roles have none. The manager can open Settings → Import preview from Duplicate review without other Settings access; other roles see a locked placeholder. Import roles are a team assumption | Settings → Roles and access; Settings → Import preview; Duplicate review |
 | Employers without timeline activity show their latest "Last Activity" from the case packet spreadsheet (Northstar Bank Sep 7, BrightPath Jul 15), labeled "From spreadsheet import". No year, activity type or timeline entry is added. Import preview section 3 shows the same values (Acme Sep 4) | Employers; Settings → Import preview |
+
+## Milestone 3 additions
+
+Added to demonstrate the recommended direction (configure the university's CRM, with integration and data governance). The prototype is presented around one workflow: the shared employer spreadsheet becomes one governed employer record, reviewed by the Employer Relations Manager and reported to the Director; advising-note protection is shown as a guardrail. Every number on the new screens is counted from the sample data; nothing new is invented.
+
+| ID | Feature | Category | Traces to | Where in the prototype |
+|---|---|---|---|---|
+| R12 | Director dashboard: candidate metrics, active employer rule check, data-quality flags, readiness of the CRM recommendation. Director's landing page | Configuration (rule check block: Customization; event and advising totals: Integration) | M1 FR (reports without manual cleanup); Sprint 2 Review (Thomas) | Director dashboard |
+| R13 | Spreadsheet retirement plan: where each column lives, cutover steps, what staff stop doing | Configuration | Client Update 3; M3 evaluation matrix (reduction of parallel manual tracking) | Settings → Import preview |
+| R14 | Note access log: who opened, added to, or was blocked from an advising case, and when. Holds no note content | Configuration | M1 NFR (log who accessed advising notes); M3 matrix (protection of private advising notes) | Student Notes → case; Settings → Note access log |
+
+Changes to existing features:
+
+| Change | Where |
+|---|---|
+| R1: search employers by name, alias or contact, with "Matched by alias" (Sprint 2 Review, Priya) | Employers |
+| R6: the report shows candidate metric counts instead of "Metrics pending", labeled as not confirmed by the Director | Engagement report |
+| R10: the Director can approve version 1 (session only); Business rules shows version history. Approval does not change recorded statuses | Director dashboard; Settings → Business rules |
+| Requirements trace page lists R1–R14 and A1 with delivery type, trace and a link to each screen (data in `src/data/features.json`) | Settings → Requirements trace |
+| Access matrix gains rows for the Director dashboard and the note access log | Settings → Roles and access |
+| Prototype scope and six-step demo path (each step switches role and opens the screen), following the M3 instruction to keep the prototype focused | Settings → About this mock-up |
+| Employers shows which active employer rule version Relationship status follows, and whether it is approved | Employers |
+
+Notes:
+
+- **Moved from README 5.2 at the team's request for M3:** alias search and the note access log.
+- **Still not built:** advisor employer summary, fuzzy matching, automatic alias on merge, and automatic reassignment to the backup advisor.
+- **Candidate metrics** come from the Sprint 2 Review (AI-simulated) and still need the Director's confirmation.
+- **Rule check:** Northstar Bank and BrightPath show "Needs review" because their last activity came from the spreadsheet without a year.
+- **Session only:** rule approval and log entries last for the browser session.

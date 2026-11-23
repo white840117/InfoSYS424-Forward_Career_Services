@@ -108,6 +108,67 @@ export default function Import() {
         </div>
         <p className="muted small">Merge decisions for rows 1+2 and 3+5 are in Duplicate review → Merge history.</p>
       </Feature>
+
+      <Feature id="R13" title="Spreadsheet retirement plan" category="Configuration"
+        description="Client Update 3: the CRM must replace routine spreadsheet tracking, not add another place to update. This is the proposed path from import to a retired spreadsheet.">
+        <h3>1. Where each spreadsheet column lives after import</h3>
+        <div className="table-wrap">
+          <table>
+            <thead><tr><th>Spreadsheet column</th><th>In the University CRM</th><th>Feature</th></tr></thead>
+            <tbody>
+              {COLUMN_MAP.map((c) => (
+                <tr key={c.column}>
+                  <td className={c.column === 'Student Notes?' ? 'struck' : undefined}>{c.column}</td>
+                  <td>{c.becomes}</td>
+                  <td>{c.feature}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3>2. Cutover steps (proposed, dates not set)</h3>
+        <ol className="steps">
+          {CUTOVER.map((c, i) => (
+            <li key={c.step}>
+              <span className="who">Step {i + 1} · {c.who}</span>
+              <span>{c.step}</span>
+              <Pill value={i === 0 ? 'Done (sample)' : 'Pending'} />
+            </li>
+          ))}
+        </ol>
+        <p className="muted small">
+          Step 1 used the case packet sample: {sheet.rows.length} spreadsheet rows became {CANON.length} employer
+          records after {mergeData.length} approved merges.
+        </p>
+
+        <h3>3. What staff stop doing</h3>
+        <ul className="plain bullets">
+          <li>Updating the shared employer spreadsheet. New employers and changes go into the CRM only.</li>
+          <li>Keeping relationship owners or status in separate lists. Each employer has one owner and two controlled fields (R1).</li>
+          <li>Combining spreadsheets by hand for leadership. The Director reads the dashboard and report (R6, R12).</li>
+        </ul>
+        <div className="note-assume">
+          Team assumption: retiring the spreadsheet still needs agreement from the Employer Relations Manager and the
+          Director, and no archive date has been set. Until step 3 happens, the spreadsheet remains a parallel record.
+        </div>
+      </Feature>
     </>
   );
 }
+
+const COLUMN_MAP = [
+  { column: 'Organization', becomes: 'Employer name (one canonical record); other spellings kept as aliases', feature: 'R1' },
+  { column: 'Contact', becomes: 'Contact record linked to the employer', feature: 'R1' },
+  { column: 'Owner', becomes: 'Relationship owner: exactly one per employer', feature: 'R1' },
+  { column: 'Last Activity', becomes: 'Activity timeline; the latest date is calculated, not typed', feature: 'R2' },
+  { column: 'Student Notes?', becomes: 'Not imported. Advising notes stay in restricted advising cases', feature: 'R3' },
+  { column: 'Status', becomes: 'Relationship status and Recruiting stage picklists', feature: 'R1' },
+];
+
+const CUTOVER = [
+  { who: 'University IT', step: 'Import the spreadsheet; duplicates go to merge review' },
+  { who: 'Employer Relations Manager', step: 'Check the imported records and clear data-quality flags' },
+  { who: 'Employer Relations Manager', step: 'Set the spreadsheet to a read-only archive' },
+  { who: 'Employer-relations staff', step: 'Add and update employers only in the CRM' },
+];

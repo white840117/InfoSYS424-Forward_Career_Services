@@ -86,6 +86,23 @@ export interface AdvisingCase {
   followUps: Task[];
 }
 
+/** One entry in the advising-note access log (R14). Holds no note content. */
+export interface NoteAccessEntry {
+  id: string;
+  caseId: string;
+  who: string;
+  role: string;
+  action: 'Opened case' | 'Added note' | 'Blocked: no access';
+  at: string;
+}
+
+/** Approval state of the "Active employer" rule (R10), for this browser session. */
+export interface RuleState {
+  status: 'Pending Director approval' | 'Approved';
+  approvedBy?: string;
+  approvedAt?: string;
+}
+
 export interface MergeReview {
   id: string;
   recordA: string;

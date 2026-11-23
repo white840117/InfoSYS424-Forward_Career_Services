@@ -62,9 +62,10 @@ export function LockedPlaceholder({ what, why }: { what: string; why?: string })
 
 export function Pill({ value }: { value: string }) {
   const cls =
-    value === 'Active' || value === 'Approved' || value === 'Done' ? 'pill pill-active'
+    value === 'Active' || value === 'Approved' || value.startsWith('Done') || value === 'Matches' ? 'pill pill-active'
       : value === 'Dormant' || value === 'Rejected' || value === '(none)' ? 'pill pill-dormant'
-        : value.startsWith('Pending') || value === 'Open' || value === 'Not connected' ? 'pill pill-pending'
+        : value.startsWith('Pending') || value === 'Open' || value === 'Not connected'
+          || value === 'Needs review' || value === 'Differs' || value === 'Blocked' ? 'pill pill-pending'
           : 'pill pill-blue';
   return <span className={cls}>{value}</span>;
 }
@@ -82,3 +83,27 @@ export function PageHead({ eyebrow, title, sub }: { eyebrow: string; title: stri
 export function ReadOnlyNote({ children }: { children: ReactNode }) {
   return <div className="note-info">{children}</div>;
 }
+
+export interface Tile {
+  label: string;
+  value: string;
+  sub: string;
+}
+
+/** A row of metric tiles: label, large value, one line of context. */
+export function Tiles({ tiles }: { tiles: Tile[] }) {
+  return (
+    <div className="tiles">
+      {tiles.map((t) => (
+        <div key={t.label} className="tile">
+          <span className="tile-label">{t.label}</span>
+          <span className="tile-value">{t.value}</span>
+          <span className="tile-sub">{t.sub}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+export const CANDIDATE_NOTE =
+  'Candidate metrics from the Sprint 2 Review (AI-simulated). The Director has not confirmed this list.';

@@ -35,6 +35,18 @@ export function reportAccess(r: RoleId): 'aggregate' | 'deidentified' {
   return r === 'director' || r === 'admin' ? 'deidentified' : 'aggregate';
 }
 
+/** Director dashboard (R12): the Director, plus the Administrator demo role (view only). */
+export function dashboardAccess(r: RoleId): 'approve' | 'view' | 'none' {
+  if (r === 'director') return 'approve';
+  if (r === 'admin') return 'view';
+  return 'none';
+}
+
+/** Note access log (R14): IT and the Administrator review it. It holds no note content. */
+export function noteLogAccess(r: RoleId): boolean {
+  return r === 'it' || r === 'admin';
+}
+
 /** Spreadsheet import (R7): IT and the Administrator run it; the ER Manager, as owner of employer data, reviews the result. */
 export function importAccess(r: RoleId): 'run' | 'review' | 'none' {
   if (r === 'it' || r === 'admin') return 'run';
@@ -45,9 +57,10 @@ export function importAccess(r: RoleId): 'run' | 'review' | 'none' {
 // ---------- Navigation by role ----------
 
 export type ModuleId =
-  | 'employers' | 'events' | 'notes' | 'duplicates' | 'workflows' | 'reports' | 'settings';
+  | 'dashboard' | 'employers' | 'events' | 'notes' | 'duplicates' | 'workflows' | 'reports' | 'settings';
 
 export const MODULES: Record<ModuleId, { to: string; label: string }> = {
+  dashboard: { to: '/dashboard', label: 'Director dashboard' },
   employers: { to: '/employers', label: 'Employers' },
   events: { to: '/events', label: 'Events' },
   notes: { to: '/notes', label: 'Student Notes' },
@@ -58,7 +71,7 @@ export const MODULES: Record<ModuleId, { to: string; label: string }> = {
 };
 
 /** One fixed sidebar order for every role. Each role only hides what it cannot open. */
-const NAV_ORDER: ModuleId[] = ['employers', 'events', 'notes', 'duplicates', 'workflows', 'reports'];
+const NAV_ORDER: ModuleId[] = ['dashboard', 'employers', 'events', 'notes', 'duplicates', 'workflows', 'reports'];
 
 const ADVISOR_NAV: ModuleId[] = ['notes', 'workflows', 'employers', 'events', 'reports'];
 const ALLOWED: Record<RoleId, ModuleId[]> = {
@@ -67,7 +80,7 @@ const ALLOWED: Record<RoleId, ModuleId[]> = {
   advisorAssigned: ADVISOR_NAV,
   advisorBackup: ADVISOR_NAV,
   advisorOther: ADVISOR_NAV,
-  director: ['reports', 'employers', 'events', 'duplicates', 'workflows'],
+  director: ['dashboard', 'reports', 'employers', 'events', 'duplicates', 'workflows'],
   it: [],
   admin: NAV_ORDER,
 };
@@ -79,7 +92,7 @@ const LANDING: Record<RoleId, ModuleId> = {
   advisorAssigned: 'notes',
   advisorBackup: 'notes',
   advisorOther: 'notes',
-  director: 'reports',
+  director: 'dashboard',
   it: 'settings',
   admin: 'employers',
 };

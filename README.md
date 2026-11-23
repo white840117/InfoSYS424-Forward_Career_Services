@@ -178,3 +178,7 @@ src/
 ## 10. Open item (ask the user before building R6)
 
 **Director report metrics (R6):** Thomas's required metrics were never confirmed (Sprint 1 Review follow-up), and the team is still deciding. Until the user gives the list, build the report page layout with the heading, the "aggregate, de-identified" note, and the category badges, and show "Metrics pending team decision" in place of numbers. Do not invent metrics.
+
+## 11. Milestone 3 additions (built)
+
+R12 Director dashboard, R13 Spreadsheet retirement plan, R14 Note access log, alias search, rule approval, the Requirements trace page, and a six-step demo path on About this mock-up. Details and traces are in `FEATURES.md` → "Milestone 3 additions". Alias search and the note access log were moved out of Section 5.2 for M3 at the team's request.

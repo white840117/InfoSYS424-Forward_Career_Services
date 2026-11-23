@@ -1,19 +1,129 @@
 {
   "columns": [
-    { "id": "staff", "label": "ER Staff" },
-    { "id": "manager", "label": "ER Manager" },
-    { "id": "advisor", "label": "Career Advisor" },
-    { "id": "director", "label": "Director" },
-    { "id": "it", "label": "University IT (demo)" },
-    { "id": "admin", "label": "Administrator (demo)" }
+    {
+      "id": "staff",
+      "label": "ER Staff"
+    },
+    {
+      "id": "manager",
+      "label": "ER Manager"
+    },
+    {
+      "id": "advisor",
+      "label": "Career Advisor"
+    },
+    {
+      "id": "director",
+      "label": "Director"
+    },
+    {
+      "id": "it",
+      "label": "University IT (demo)"
+    },
+    {
+      "id": "admin",
+      "label": "Administrator (demo)"
+    }
   ],
   "rows": [
-    { "record": "Employer accounts and contacts", "cells": { "staff": "Edit", "manager": "Edit", "advisor": "View (read-only)", "director": "View", "it": "None", "admin": "View" } },
-    { "record": "Engagement activities and tasks", "cells": { "staff": "Edit", "manager": "Edit", "advisor": "View summary", "director": "View", "it": "None", "admin": "View" } },
-    { "record": "Merge review cases", "cells": { "staff": "Create", "manager": "Approve or reject", "advisor": "None", "director": "View", "it": "None", "admin": "View" } },
-    { "record": "Advising cases and notes", "cells": { "staff": "None", "manager": "None", "advisor": "Assigned or backup advisor only", "director": "None", "it": "None", "admin": "None" } },
-    { "record": "Engagement reports", "cells": { "staff": "Aggregate", "manager": "Aggregate", "advisor": "Aggregate", "director": "Aggregate, de-identified", "it": "None", "admin": "Aggregate, de-identified" } },
-    { "record": "Spreadsheet import (R7)", "cells": { "staff": "None", "manager": "Review results", "advisor": "None", "director": "None", "it": "Run import", "admin": "Run import" } },
-    { "record": "Settings (mock-up info, access, rules, integrations)", "cells": { "staff": "None by default", "manager": "None by default", "advisor": "None by default", "director": "None by default", "it": "Manage", "admin": "Manage" } }
+    {
+      "record": "Employer accounts and contacts",
+      "cells": {
+        "staff": "Edit",
+        "manager": "Edit",
+        "advisor": "View (read-only)",
+        "director": "View",
+        "it": "None",
+        "admin": "View"
+      }
+    },
+    {
+      "record": "Engagement activities and tasks",
+      "cells": {
+        "staff": "Edit",
+        "manager": "Edit",
+        "advisor": "View summary",
+        "director": "View",
+        "it": "None",
+        "admin": "View"
+      }
+    },
+    {
+      "record": "Merge review cases",
+      "cells": {
+        "staff": "Create",
+        "manager": "Approve or reject",
+        "advisor": "None",
+        "director": "View",
+        "it": "None",
+        "admin": "View"
+      }
+    },
+    {
+      "record": "Advising cases and notes",
+      "cells": {
+        "staff": "None",
+        "manager": "None",
+        "advisor": "Assigned or backup advisor only",
+        "director": "None",
+        "it": "None",
+        "admin": "None"
+      }
+    },
+    {
+      "record": "Engagement reports",
+      "cells": {
+        "staff": "Aggregate",
+        "manager": "Aggregate",
+        "advisor": "Aggregate",
+        "director": "Aggregate, de-identified",
+        "it": "None",
+        "admin": "Aggregate, de-identified"
+      }
+    },
+    {
+      "record": "Director dashboard (R12)",
+      "cells": {
+        "staff": "None",
+        "manager": "None",
+        "advisor": "None",
+        "director": "View; approve the active employer rule",
+        "it": "None",
+        "admin": "View"
+      }
+    },
+    {
+      "record": "Note access log (R14, no note content)",
+      "cells": {
+        "staff": "None",
+        "manager": "None",
+        "advisor": "Own cases (assigned or backup)",
+        "director": "None",
+        "it": "View",
+        "admin": "View"
+      }
+    },
+    {
+      "record": "Spreadsheet import (R7)",
+      "cells": {
+        "staff": "None",
+        "manager": "Review results",
+        "advisor": "None",
+        "director": "None",
+        "it": "Run import",
+        "admin": "Run import"
+      }
+    },
+    {
+      "record": "Settings (mock-up info, access, rules, integrations)",
+      "cells": {
+        "staff": "None by default",
+        "manager": "None by default",
+        "advisor": "None by default",
+        "director": "None by default",
+        "it": "Manage",
+        "admin": "Manage"
+      }
+    }
   ]
 }

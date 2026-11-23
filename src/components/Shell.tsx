@@ -93,7 +93,7 @@ function SettingsInfo() {
       {open && (
         <div id="settings-info" className="info-pop" role="dialog" aria-label="How to see Settings" style={{ top: pos.top, left: pos.left }}>
           <p>
-            Settings (About this mock-up, Roles and access, Import preview R7, Business rules R10, Integrations R11)
+            Settings (About this mock-up, Roles and access, Import preview R7 and R13, Business rules R10, Integrations R11, Note access log R14, Requirements trace)
             is visible to the University IT and Administrator demo roles. Switch to Administrator to see it.
           </p>
           <button

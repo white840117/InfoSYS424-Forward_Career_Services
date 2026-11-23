@@ -7,7 +7,9 @@ import activitiesData from './data/activities.json';
 import advisingData from './data/advising.json';
 import mergeData from './data/mergeReviews.json';
 import { SETTINGS_FIXED } from './access';
-import type { AdvisingCase, Activity, Employer, MergeReview, Role, RoleId, Task } from './types';
+import type {
+  AdvisingCase, Activity, Employer, MergeReview, NoteAccessEntry, Role, RoleId, RuleState, Task,
+} from './types';
 
 export const ROLES = rolesData as Role[];
 export const ACTIVITIES = activitiesData.activities as Activity[];
@@ -53,6 +55,12 @@ interface Store {
   addNote: (caseId: string, note: NewNote) => void;
   settingsRoles: RoleId[];
   setSettingsAccess: (id: RoleId, on: boolean) => void;
+  /** R10: approval of the active-employer rule (session only). */
+  rule: RuleState;
+  approveRule: () => void;
+  /** R14: who opened, or was blocked from, an advising case. No note content is stored. */
+  noteLog: NoteAccessEntry[];
+  logNoteAccess: (caseId: string, action: NoteAccessEntry['action']) => void;
 }
 
 export interface NewNote {
@@ -73,9 +81,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
   const [advisingCases, setAdvising] = useState<AdvisingCase[]>(advisingData as AdvisingCase[]);
   const [mergeReviews, setMerge] = useState<MergeReview[]>(mergeData as MergeReview[]);
   const [settingsRoles, setSettingsRoles] = useState<RoleId[]>(SETTINGS_FIXED);
+  const [rule, setRule] = useState<RuleState>({ status: 'Pending Director approval' });
+  const [noteLog, setNoteLog] = useState<NoteAccessEntry[]>([]);
 
   const value = useMemo<Store>(() => {
     const role = ROLES.find((r) => r.id === roleId) ?? ROLES[0];
+    const log = (caseId: string, action: NoteAccessEntry['action']) =>
+      setNoteLog((list) => [
+        { id: `log-${Date.now()}-${list.length}`, caseId, who: role.user, role: role.label, action, at: nowLabel() },
+        ...list,
+      ]);
     return {
       role,
       setRole: (id) => { setRoleId(id); writeRole(id); },
@@ -116,7 +131,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
             ? `Approved for merge (simulated: records are not changed in this mock-up)`
             : 'Rejected: records stay separate',
         })),
-      addNote: (caseId, n) =>
+      addNote: (caseId, n) => {
+        log(caseId, 'Added note');
         setAdvising((list) => list.map((c) => {
           if (c.id !== caseId) return c;
           const fu = n.followUp.trim();
@@ -134,13 +150,18 @@ export function StoreProvider({ children }: { children: ReactNode }) {
               }]
               : c.followUps,
           };
-        })),
+        }));
+      },
       settingsRoles,
       setSettingsAccess: (id, on) =>
         setSettingsRoles((list) => SETTINGS_FIXED.includes(id) ? list
           : on ? [...new Set([...list, id])] : list.filter((x) => x !== id)),
+      rule,
+      approveRule: () => setRule({ status: 'Approved', approvedBy: role.user, approvedAt: nowLabel() }),
+      noteLog,
+      logNoteAccess: log,
     };
-  }, [roleId, employers, tasks, advisingCases, mergeReviews, settingsRoles]);
+  }, [roleId, employers, tasks, advisingCases, mergeReviews, settingsRoles, rule, noteLog]);
 
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }

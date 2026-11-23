@@ -1,9 +1,11 @@
-import { reportAccess } from '../access';
-import { Feature, PageHead, Pill } from '../components/ui';
+import { Link } from 'react-router-dom';
+import { dashboardAccess, reportAccess } from '../access';
+import { CANDIDATE_NOTE, Feature, PageHead, Pill, Tiles } from '../components/ui';
 import { useStore } from '../store';
+import { employerTiles } from './metrics';
 
 export default function Reports() {
-  const { role } = useStore();
+  const { role, employers, tasks } = useStore();
   const deid = reportAccess(role.id) === 'deidentified';
 
   return (
@@ -18,10 +20,11 @@ export default function Reports() {
             ? 'You are viewing as Director: aggregate, de-identified counts only. Advising data appears only as totals, never by student.'
             : `You are viewing as ${role.label}: aggregate counts only.`}
         </div>
-        <div className="metric-placeholder" role="status">
-          <strong>Metrics pending team decision</strong>
-          Thomas Nguyen's required metrics were not confirmed in the Sprint 1 Review. The numbers will appear here once the team agrees on the list.
-        </div>
+        <Tiles tiles={employerTiles(employers, tasks)} />
+        <p className="note-assume">{CANDIDATE_NOTE} Counts come from the sample data only.</p>
+        {dashboardAccess(role.id) !== 'none' && (
+          <p className="small">Rule check, data-quality flags and advising totals: <Link to="/dashboard">Director dashboard</Link>.</p>
+        )}
       </Feature>
 
       <Feature id="R6" title="Report data sources" category="Integration"

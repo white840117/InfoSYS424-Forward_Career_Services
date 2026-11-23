@@ -4,6 +4,7 @@ import type { ModuleId } from './access';
 import { HomeRedirect, ModuleGate, SettingsGate, Shell } from './components/Shell';
 import Import from './modules/Import';
 import Contacts from './modules/Contacts';
+import Dashboard from './modules/Dashboard';
 import Duplicates from './modules/Duplicates';
 import EmployerRecord from './modules/EmployerRecord';
 import { EventRecord, EventsDirectory } from './modules/Events';
@@ -33,6 +34,7 @@ export default function App() {
     <Shell>
       <Routes>
         <Route path="/" element={<HomeRedirect />} />
+        <Route path="/dashboard" element={gate('dashboard', <Dashboard />)} />
         <Route path="/employers" element={gate('employers', <Contacts />)} />
         <Route path="/employers/:id" element={gate('employers', <EmployerRecord />)} />
         <Route path="/events" element={gate('events', <EventsDirectory />)} />

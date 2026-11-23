@@ -256,3 +256,34 @@ select.picklist, .form select, .form input, .form textarea {
 .subtabs a.active { color: var(--nav-active-text); border-bottom-color: var(--nav-active-text); font-weight: 600; }
 .toggle-row { display: flex; align-items: center; gap: 12px; min-height: 44px; }
 .toggle-row input { width: 20px; height: 20px; }
+
+/* ---------- M3 additions: dashboard tiles, rule text, readiness, search ---------- */
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; }
+.tile {
+  border: 1px solid var(--border); border-radius: var(--radius); padding: 14px 16px; background: #FAFBFA;
+  display: flex; flex-direction: column; gap: 4px; min-width: 0;
+}
+.tile-label { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+.tile-value { color: var(--heading); font-size: 28px; font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+.tile-sub { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.rule-text {
+  margin: 0; padding: 14px 18px; border-radius: var(--radius); background: #F5F8F7;
+  border-left: 0; font-size: 16px; color: var(--heading);
+}
+.readiness { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+ul.plain { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+ul.plain.bullets { list-style: disc; padding-left: 18px; gap: 6px; }
+ul.plain li { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+ul.plain.bullets li { display: list-item; }
+.search-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.search-row input {
+  min-height: 44px; flex: 1 1 280px; max-width: 420px; padding: 0 12px; border: 1px solid #C2C9D1;
+  border-radius: var(--radius); font: 500 14px Inter, sans-serif; color: var(--text); background: #fff;
+}
+.steps .pill { align-self: flex-start; }
+
+/* Demo path on About this mock-up */
+.demo-path { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; }
+.demo-path li { border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 6px; background: #FAFBFA; }
+.demo-path .who { color: var(--muted); font-size: 12px; font-weight: 600; letter-spacing: .02em; }
+.demo-path .btn { align-self: flex-start; margin-top: auto; }

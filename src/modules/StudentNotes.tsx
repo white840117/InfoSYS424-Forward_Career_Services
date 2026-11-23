@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { canOpenAdvisingCase } from '../access';
-import { Feature, LockedPlaceholder, PageHead } from '../components/ui';
+import { Feature, LockedPlaceholder, PageHead, Pill } from '../components/ui';
 import { formatDate, useStore } from '../store';
 import type { AdvisingCase } from '../types';
 import { TaskView } from './Workflows';
@@ -85,11 +85,22 @@ function AddNoteForm({ c, onDone }: { c: AdvisingCase; onDone: () => void }) {
 
 export function AdvisingCaseView() {
   const { id } = useParams();
-  const { role, advisingCases, toggleFollowUp } = useStore();
+  const { role, advisingCases, toggleFollowUp, noteLog, logNoteAccess } = useStore();
   const [adding, setAdding] = useState(false);
   const c = advisingCases.find((x) => x.id === id);
+  const allowed = !!c && canOpenAdvisingCase(role.id, c);
+
+  // R14: record each opening (or blocked attempt) once per case and role.
+  const logged = useRef('');
+  useEffect(() => {
+    if (!c) return;
+    const key = `${c.id}|${role.id}`;
+    if (logged.current === key) return;
+    logged.current = key;
+    logNoteAccess(c.id, allowed ? 'Opened case' : 'Blocked: no access');
+  }, [c?.id, role.id, allowed]);
+
   if (!c) return <p>Case not found. <Link to="/notes">Back to Student Notes</Link></p>;
-  const allowed = canOpenAdvisingCase(role.id, c);
   const isBackup = role.id === 'advisorBackup';
 
   return (
@@ -149,8 +160,36 @@ export function AdvisingCaseView() {
               ))}
             </section>
           </div>
+          <Feature id="R14" title="Access history for this case" category="Configuration"
+            description="Every time someone opens this case, adds a note, or is blocked, the CRM records who and when. The log holds no note content.">
+            <AccessLogTable entries={noteLog.filter((e) => e.caseId === c.id)} />
+          </Feature>
         </>
       )}
     </>
+  );
+}
+
+/** R14 log rows. Shared with Settings → Note access log. */
+export function AccessLogTable({ entries, showCase }: { entries: { id: string; caseId: string; who: string; role: string; action: string; at: string }[]; showCase?: boolean }) {
+  if (entries.length === 0) {
+    return <p className="muted">No access recorded yet in this session. Open an advising case as any role to add an entry.</p>;
+  }
+  return (
+    <div className="table-wrap">
+      <table>
+        <thead><tr>{showCase && <th>Case</th>}<th>Who</th><th>Action</th><th>When</th></tr></thead>
+        <tbody>
+          {entries.map((e) => (
+            <tr key={e.id}>
+              {showCase && <td>{e.caseId}</td>}
+              <td>{e.who}<span className="sub">{e.role}</span></td>
+              <td><Pill value={e.action === 'Blocked: no access' ? 'Blocked' : e.action} /></td>
+              <td>{e.at}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
