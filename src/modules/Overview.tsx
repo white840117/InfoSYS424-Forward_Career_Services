@@ -35,7 +35,7 @@ export default function Overview() {
       <PageHead
         eyebrow="Settings"
         title="University CRM, configured for FCS"
-        sub="Candidate direction (not final): the university's existing CRM is the single system of record. Case needs are met by configuration, customization inside the CRM, or integration with university systems."
+        sub="Recommended direction: the university's existing CRM is the single system of record for employer and advising data. Case needs are met by configuration, customization inside the CRM, or integration with university systems."
       />
 
       <section className="card stack" aria-labelledby="scope">
